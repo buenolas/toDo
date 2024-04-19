@@ -1,6 +1,7 @@
 class List{
-    constructor(value){
+    constructor(value, btn){
         this._value = value;
+        this._btnState = btn;
         this._index;
     }
 
@@ -8,8 +9,16 @@ class List{
         return this._value;
     }
 
-    setValue(value){
-        return this._value = value;
+    setValue(content){
+        this._value = content;
+    }
+
+    getButton(){
+        return this._btnState;
+    }
+    
+    setButton(state){
+        this._btnState = state;
     }
 
     loadFromJSON(json){
@@ -35,35 +44,24 @@ class List{
         return list;
     }
 
-    saveStorage(){ //save a list
-        
+    saveStorage() {
         let list = List.getListStorage();
-
-        if(this.index > 0){
-
-            list.map(u=>{
-
-                if(u._index == this.index){
-
-                    Object.assign(u, this);
-
+    
+        if (this._index > 0) {
+            list = list.map(u => {
+                if (u._index === this._index) {
+                    return { ...this }; // Atualiza o item existente
                 }
-                
                 return u;
-
             });
-        
-        }else{
-
-            this.index = this.getNewIndex();
+        } else {
+            this._index = this.getNewIndex();
             list.push(this);
-
-            
         }
-
+    
         localStorage.setItem("tasks", JSON.stringify(list));
-
     }
+    
 
     getNewIndex(){ //each list gets an id to help when it needs to search
 
