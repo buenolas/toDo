@@ -53,7 +53,7 @@ This project is provided without restrictions. You can use, modify, and distribu
 
 ## Author
 
-- [Lucas Bueno](github.com/buenolas)
+- [Lucas Bueno](https://github.com/buenolas)
 
 ## Acknowledgments
 
